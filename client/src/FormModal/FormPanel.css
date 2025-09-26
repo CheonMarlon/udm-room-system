@@ -1,0 +1,93 @@
+.form-panel {
+  flex: 1;
+  max-width: 350px; /* match sched-right open width */
+  background: #fff;
+  padding: 1.2rem;
+  height: 100vh; /* Match height of sched-left */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  animation: slideInRight 0.3s ease forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.form-title {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.form input,
+.form select {
+  border: 1px solid #d1d5db;
+  padding: 0.2rem;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.form label {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.radio-group {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.radio-group input {
+  margin-right: 0.3rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto; /* pushes buttons to bottom */
+}
+
+.save-btn {
+  background-color: #16a34a;
+  color: white;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  flex: 1;
+  transition: background-color 0.2s ease;
+}
+
+.save-btn:hover {
+  background-color: #15803d;
+}
+
+.cancel-btn {
+  background: none;
+  color: #dc2626;
+  border: none;
+  cursor: pointer;
+  flex: 1;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
