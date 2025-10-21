@@ -15,6 +15,11 @@ class RoomAssignment(models.Model):
         on_delete=models.CASCADE,
         related_name='room_assignments'
     )
+    status = models.CharField(
+    max_length=10,
+    choices=STATUS_CHOICES,
+    default='Available'
+    )
     course_section = models.CharField(max_length=50)
     room = models.CharField(max_length=50)
     schedule_start = models.DateTimeField()

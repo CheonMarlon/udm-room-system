@@ -6,9 +6,24 @@ from rest_framework import status
 from .models import RoomAssignment
 from .serializers import RoomAssignmentSerializer
 
+
 # Create your views here.
 
 ALLOWED_TAGS = ['Available', 'Reserved']
+
+# register prof
+@api_view(['POST'])
+def register_professor_api(request):
+    serializer = RegisterProfessorSerializer(data=request.data)
+    if serializer.is_valid():
+        user = serializer.save()
+        return Response({
+            "message": "Professor registered successfully.",
+            "professor_id": user.professor_id,
+            "full_name": user.full_name,
+            "email": user.email
+        }, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 def list_rooms_query_api(request):
@@ -25,7 +40,7 @@ def list_rooms_query_api(request):
 @permission_classes([IsAuthenticated])
 def create_room_assignment_api(request):
     serializer = RoomAssignmentSerializer(data=request.data)
-    if serializer.isValid():
+    if serializer.is_valid():
         serializer.save(professor=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

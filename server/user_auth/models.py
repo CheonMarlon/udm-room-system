@@ -2,9 +2,6 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.db import models
 from django.utils import timezone
 
-
-# Create your models here.
-
 class CustomUserManager(BaseUserManager):
     def create_user(self, professor_id, password=None, **extra_fields):
         if not professor_id:
@@ -19,7 +16,6 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
         return self.create_user(professor_id, password, **extra_fields)
 
-
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     professor_id = models.CharField(max_length=20, unique=True)
     full_name = models.CharField(max_length=100)
@@ -27,7 +23,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
+
     objects = CustomUserManager()
+
     USERNAME_FIELD = 'professor_id'
     REQUIRED_FIELDS = ['full_name', 'email']
 
